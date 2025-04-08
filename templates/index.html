@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Agent IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h3>Agent IA</h3>
+                </div>
+                <div class="sidebar-content">
+                    <div class="mode-toggle mb-4">
+                        <h5>Mode d'apprentissage</h5>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="learningModeToggle">
+                            <label class="form-check-label" for="learningModeToggle">Activer</label>
+                        </div>
+                    </div>
+                    <div class="file-upload mb-4" id="fileUploadSection" style="display: none;">
+                        <h5>Nourrir l'IA</h5>
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="fileInput" class="form-label">Sélectionner un fichier</label>
+                                <input class="form-control" type="file" id="fileInput">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer pour apprentissage</button>
+                        </form>
+                        <div id="uploadStatus" class="mt-2"></div>
+                    </div>
+                    <div class="history mb-4">
+                        <h5>Historique</h5>
+                        <div id="conversationHistory" class="list-group"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <header class="bg-primary text-white p-3">
+                    <h2>Dashboard - Agent IA Intelligent</h2>
+                </header>
+                
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message agent-message">
+                            <div class="message-content">
+                                Bonjour ! Je suis votre agent IA. Comment puis-je vous aider aujourd'hui ?
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <form id="messageForm">
+                            <div class="input-group">
+                                <input type="text" id="userInput" class="form-control" placeholder="Tapez votre message ici...">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="status-bar bg-light p-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <small>Mode: <span id="currentMode">Conversation</span></small>
+                        </div>
+                        <div class="col-6 text-end">
+                            <small id="statusMessage">Prêt</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
